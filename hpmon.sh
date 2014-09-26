@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Simple Server Health script
+# Simple Server Health Notification script
 # Verifies Server health by querying IML and ACU
 # and emails if a disk has failed or Caution/Critical message
 # is found in Server Event Log (IML)
