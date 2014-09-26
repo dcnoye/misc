@@ -11,32 +11,31 @@
 
 # Global variables
 ME=$0
-MAILWHO=@gmail.com
+MAILWHO=dcnoye
+MAILWHOF="Server"
 HPACUCLI='hpacucli controller slot=0 physicaldrive all show'
 HPLOG='hplog -v'
 HPACUCLI_TMP=/var/log/hpacucli.log
 HPLOG_TMP=/var/log/hplog.log
-
+SUBJECT="Hardware Error"
 
 ## IML GET DATA
 
-$HPLOG | grep ':'  > $HPLOG_TMP
+$HPLOG | grep ':' > $HPLOG_TMP
 
 ## ARRAY GET DATA
 
-$HPACUCLI | grep ':'  > $HPACUCLI_TMP
+$HPACUCLI | grep ':' > $HPACUCLI_TMP
 
 if [ `cat $HPACUCLI_TMP | grep physicaldrive | grep -v OK | wc -l` -gt 0 ]
 then
-SUBJECT=”RAID Controller Errors”
-logger -p syslog.error -t $ME “$SUBJECT found. Please check Array status using hpacucli”
-mail -s “$HOSTNAME: $SUBJECT” “$MAILWHO” $HPACUCLI_TMP
+logger -p syslog.error -t $ME "$SUBJECT found. Please check Array status using hpacucli"
+mail -a $HPACUCLI_TMP -s "$SUBJECT" "$MAILWHO" < /dev/null
 fi
 ## looks for Caution and Critical messages only
 
-if [ `cat $HPLOG_TMP | grep -e Critical -e Caution | wc -l` -gt 0 ]
+if [ `cat $HPLOG_TMP | grep $(date +"%m/%d/%Y\s%H") | grep -e Critical -e Caution | wc -l` -gt 0 ]
 then
-SUBJECT=”IML Errors”
-logger -p syslog.error -t $ME “$SUBJECT found. Please check server status using hplog -v”
-mail -s “$HOSTNAME: $SUBJECT” “$MAILWHO” $HPLOG_TMP
+logger -p syslog.error -t $ME "$SUBJECT found. Please check server status using hplog"
+mail -r "$MAILWHOF" -a $HPLOG_TMP -s "$SUBJECT" "$MAILWHO" < $HPLOG_TMP
 fi
