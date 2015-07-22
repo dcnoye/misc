@@ -1,4 +1,4 @@
-misc
+Misc
 ====
 
-stuff i don't want to lose.
+Stuff I don't want to misplace.

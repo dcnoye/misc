@@ -17,7 +17,7 @@ HPACUCLI='hpacucli controller slot=0 physicaldrive all show'
 HPLOG='hplog -v'
 HPACUCLI_TMP=/var/log/hpacucli.log
 HPLOG_TMP=/var/log/hplog.log
-SUBJECT="Hardware Error"
+SUBJECT="Error"
 
 ## IML GET DATA
 
