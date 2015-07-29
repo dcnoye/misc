@@ -1,6 +1,6 @@
 #!/bin/bash
-#use at your own RISK!
-
+#original here:
+#https://github.com/dcnoye/misc/blob/master/openstack.sh
 
 #setup swap - primarily for low ram test boxes
 #can be removed
@@ -32,8 +32,8 @@ META_PWD=break4ever
 
 
 PRIMARY_NODE_IP=$(get_ip eth1)
-SECONDARY_NODE_IP=10.17.100.12
-TERTIARY_NODE_IP=10.17.100.13
+#SECONDARY_NODE_IP=10.17.100.12
+#TERTIARY_NODE_IP=10.17.100.13
 
 DB_PASS=fiberNet
 USER_PWD=not4you22
