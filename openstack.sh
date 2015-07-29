@@ -1,9 +1,27 @@
 #!/bin/bash
 #use at your own RISK!
-#test builds
 
-#stack information
-CONTROLLER_IP=104.236.94.11
+
+#setup swap - primarily for low ram test boxes
+#can be removed
+
+do_swap(){
+fallocate -l 4G /swapfile 
+chmod 600 /swapfile
+mkswap /swapfile;swapon /swapfile
+echo "/swapfile    none    swap    sw    0    0" >> /etc/fstab
+}
+
+get_lan() {
+    dev=$1
+    if [ -n "$dev" ]; then
+        ip a show dev $dev 2>/dev/null | awk -F'[ /]' '/inet /{print $6}'
+    fi
+}
+
+do_swap
+
+CONTROLLER_IP=$(get_ip eth0)
 
 #C_IP1=controller.unicloud.fiber.net
 #C_IP2=controller
