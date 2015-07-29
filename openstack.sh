@@ -12,7 +12,7 @@ mkswap /swapfile;swapon /swapfile
 echo "/swapfile    none    swap    sw    0    0" >> /etc/fstab
 }
 
-get_lan() {
+get_ip() {
     dev=$1
     if [ -n "$dev" ]; then
         ip a show dev $dev 2>/dev/null | awk -F'[ /]' '/inet /{print $6}'
@@ -41,11 +41,12 @@ SERVICE_PWD=letmein123
 ADMIN_PWD=not4anyone
 META_PWD=break4ever
 
-PRIMARY_NODE_IP=10.17.100.11
+
+PRIMARY_NODE_IP=$(get_ip eth1)
 SECONDARY_NODE_IP=10.17.100.12
 TERTIARY_NODE_IP=10.17.100.13
 
-DB_PASS=fiberNetrules123$
+DB_PASS=fiberNet
 USER_PWD=not4you22
 
 #install ntp
