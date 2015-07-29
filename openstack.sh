@@ -1,5 +1,6 @@
 #!/bin/bash
 #use at your own RISK!
+#test builds
 
 #stack information
 CONTROLLER_IP=104.236.94.11
