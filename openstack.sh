@@ -52,6 +52,7 @@ USER_PWD=not4you22
 #install ntp
 # NTP is critical, openstack will not work without this.!
 yum -y install ntp
+yum -y install vim
 systemctl enable ntpd.service
 systemctl start ntpd.service
 
@@ -475,7 +476,7 @@ systemctl start neutron-server.service
 
 #install dashboard
 #TODO: put on dedicated server
-yum -y install openstack-dashboard httpd mod_wsgi memcached python-memcached openstack-dashboard-theme
+yum -y install openstack-dashboard httpd mod_wsgi memcached python-memcached
 
 #edit /etc/openstack-dashboard/local_settings
 sed -i.bak "s/ALLOWED_HOSTS = \['horizon.example.com', 'localhost'\]/ALLOWED_HOSTS = ['*']/" /etc/openstack-dashboard/local_settings
