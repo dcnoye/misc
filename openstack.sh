@@ -18,21 +18,10 @@ get_ip() {
         ip a show dev $dev 2>/dev/null | awk -F'[ /]' '/inet /{print $6}'
     fi
 }
-
+#comment out if you have over 4G ram
 do_swap
 
 CONTROLLER_IP=$(get_ip eth0)
-
-#C_IP1=controller.unicloud.fiber.net
-#C_IP2=controller
-#C_IP3=controller
-
-#  --publicurl http://$CONTROLLER_IP:5000/v2.0 \
-#  --internalurl http://$CONTROLLER_IP:5000/v2.0 \
-#  --adminurl http://$CONTROLLER_IP:35357/v2.0 \
-
-
-
 
 #change with: openssl rand -hex 10
 #look to autogenerate token below
