@@ -529,11 +529,8 @@ openstack endpoint create \
   --region FiberNet \
   object-store
 #install swift
-yum -y install openstack-swift-proxy python-swiftclient python-keystone-auth-token python-keystonemiddleware memcached
-
-curl -o /etc/swift/proxy-server.conf https://git.openstack.org/cgit/openstack/swift/plain/etc/proxy-server.conf-sample?h=stable/kilo
 
 
-vim /etc/swift/proxy-server.conf
+
 
 
