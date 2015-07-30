@@ -1,4 +1,4 @@
 Misc
 ====
 
-Stuff I don't want to misplace.
+collection of simple scripts
