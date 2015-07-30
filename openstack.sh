@@ -466,6 +466,8 @@ yum -y install openstack-dashboard httpd mod_wsgi memcached python-memcached
 #edit /etc/openstack-dashboard/local_settings
 sed -i.bak "s/ALLOWED_HOSTS = \['horizon.example.com', 'localhost'\]/ALLOWED_HOSTS = ['*']/" /etc/openstack-dashboard/local_settings
 sed -i 's/OPENSTACK_HOST = "127.0.0.1"/OPENSTACK_HOST = "'"$CONTROLLER_IP"'"/' /etc/openstack-dashboard/local_settings
+sed -i "s/WEBROOT = '\/dashboard\/'/WEBROOT = '\/'/" /etc/openstack-dashboard/local_settings
+
 
 #drop the /dashboard from the url
 sed -i.bak 's/WSGIScriptAlias \/dashboard/WSGIScriptAlias \//' /etc/httpd/conf.d/openstack-dashboard.conf  
