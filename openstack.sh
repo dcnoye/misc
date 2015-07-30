@@ -542,5 +542,14 @@ openstack endpoint create \
 
 
 
+###############################################################################
+# All done!
+###############################################################################
 
+
+cat <<CONCLUSION
+Openstack controller node is now installed. 
+visit http://$CONTROLLER_IP/ 
+use $ADMIN_PWD for admin password
+CONCLUSION
 
