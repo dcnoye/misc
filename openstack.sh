@@ -1,6 +1,7 @@
 #!/bin/bash
 #original here:
 #https://github.com/dcnoye/misc/blob/master/openstack.sh
+#http://git.fibernetoffice.com/dcn113/openstack/blob/master/openstack.sh
 
 #setup swap - primarily for low ram test boxes
 #can be removed
