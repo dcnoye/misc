@@ -6,10 +6,10 @@
 #can be removed
 
 do_swap(){
-fallocate -l 4G /swapfile 
-chmod 600 /swapfile
-mkswap /swapfile;swapon /swapfile
-echo "/swapfile    none    swap    sw    0    0" >> /etc/fstab
+    fallocate -l 4G /swapfile 
+    chmod 600 /swapfile
+    mkswap /swapfile;swapon /swapfile
+    echo "/swapfile    none    swap    sw    0    0" >> /etc/fstab
 }
 
 get_ip() {
@@ -21,6 +21,7 @@ get_ip() {
 #comment out if you have over 4G ram
 do_swap
 
+#adjust dev as needed
 CONTROLLER_IP=$(get_ip eth0)
 
 #change with: openssl rand -hex 10
@@ -225,11 +226,6 @@ systemctl start httpd.service memcached.service
 #systemctl enable openstack-keystone.service
 #systemctl start openstack-keystone.service
 
-
-
-
-
-
   
 #create users and projects(tenants)
 #967c28d6a6389011776d
@@ -246,7 +242,6 @@ openstack project create --description "Webdev Project" webdev
 openstack user create webdev --password $USER_PWD
 openstack role add --project webdev --user webdev _member_
 openstack project create --description "Service Project" service
-
 
 
 openstack service create --name keystone --description "OpenStack Identity" identity
@@ -488,15 +483,15 @@ openstack service create  --name cinder --description "OpenStack Block Storage" 
 openstack service create  --name cinderv2 --description "OpenStack Block Storage" volumev2
 
 openstack endpoint create \
-  --publicurl http://controller:8776/v2/%\(tenant_id\)s \
-  --internalurl http://controller:8776/v2/%\(tenant_id\)s \
-  --adminurl http://controller:8776/v2/%\(tenant_id\)s \
+  --publicurl http://$CONTROLLER_IP:8776/v2/%\(tenant_id\)s \
+  --internalurl http://$CONTROLLER_IP:8776/v2/%\(tenant_id\)s \
+  --adminurl http://$CONTROLLER_IP:8776/v2/%\(tenant_id\)s \
   --region FiberNet \
   volume
 openstack endpoint create \
-  --publicurl http://controller:8776/v2/%\(tenant_id\)s \
-  --internalurl http://controller:8776/v2/%\(tenant_id\)s \
-  --adminurl http://controller:8776/v2/%\(tenant_id\)s \
+  --publicurl http://$CONTROLLER_IP:8776/v2/%\(tenant_id\)s \
+  --internalurl http://$CONTROLLER_IP:8776/v2/%\(tenant_id\)s \
+  --adminurl http://$CONTROLLER_IP:8776/v2/%\(tenant_id\)s \
   --region FiberNet \
   volumev2
 
