@@ -6,7 +6,7 @@
 # is found in Server Event Log (IML)
 #
 # Requires hp-health and hpacucli to be installed
-# Darryl C. Noye - 06/02/2014
+# D.C. Noye - 06/02/2014
 #################################################
 
 # Global variables
